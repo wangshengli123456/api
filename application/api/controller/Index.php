@@ -6,7 +6,7 @@ use think\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use think\Session;
 use think\View;
-
+header("Access-Control-Allow-Origin: *");
 class Index extends Controller
 {
     //  用来直接检查接口安全
