@@ -187,5 +187,65 @@ class Index extends Controller
 
      $status = $mail->send();
 
- }
+    }
+
+    /**
+     * 找回密码
+     */
+    public function findpwd()
+    {
+        if ($this->key()==1){
+            $model = model('login');
+            //接收取到的值
+            $res = $model->save(['pwd'=>sha1(md5(input('pwd')))],['email|telphone'=>input('user')]);
+            if ($res){
+                return [
+                    'status'=>100,
+                    'message'=>'修改密码成功，重新登录',
+                ];
+            }else{
+                return [
+                    'status'=>102,
+                    'message'=>'密码修改失败',
+                    'data'=>''
+                ];
+            }
+        }else{
+            return [
+                'status'=>101,
+                'message'=>'密钥不正确',
+            ];
+        }
+    }
+
+    /**
+     * 明星大神的接口
+     */
+    public function starmanito()
+    {
+        if ($this->key()==1){
+            //根据粉丝量排序筛选数据
+            $model = model('login');
+            $data = $model->order('fans','desc')->field('id,username,photo,person')->select();
+            $info = $data->toArray();
+            if ($data){
+                return[
+                    'data'=>$info,
+                    'status'=>100,
+                    'message'=>'数据请求成功',
+                ];
+            }else{
+                return[
+                    'data'=>'',
+                    'status'=>102,
+                    'message'=>'数据请求失败',
+                ];
+            }
+        }else{
+            return [
+                'status'=>101,
+                'message'=>'密钥不正确',
+            ];
+        }
+    }
 }

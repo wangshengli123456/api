@@ -13,4 +13,7 @@ Route::group('api',function (){
     Route::any('register','api/index/register');
     Route::any('login','api/index/login');
     Route::any('emailband','api/index/emailband');
+    Route::any('qqlogin','api/qqlogin/qqLogin');
+    Route::any('findpwd','api/index/findpwd');
+    Route::any('starmanito','api/index/starmanito');
 });
