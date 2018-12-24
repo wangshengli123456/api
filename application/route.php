@@ -13,4 +13,12 @@ Route::group('api',function (){
     Route::any('register','api/index/register');
     Route::any('login','api/index/login');
     Route::any('emailband','api/index/emailband');
+    //直播分类父级分类接口
+    Route::get('type','api/type/index');
+    //直播分类子级分类接口
+    Route::get('zbtype/:id','api/type/indextwo');
+    //导航分类父级分类接口
+    Route::get('help','api/help/index');
+    //导航分类子级分类接口
+    Route::get('zbhelp/:id','api/help/indextwo');
 });
